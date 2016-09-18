@@ -24,6 +24,7 @@ class MyclassroomTabelViewCell: UITableViewCell, CLLocationManagerDelegate {
     @IBOutlet weak var place: UILabel!
     @IBOutlet weak var courseid: UILabel!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var classroom: UILabel!
     
 
     

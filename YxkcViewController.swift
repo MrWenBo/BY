@@ -76,7 +76,7 @@ class YxkcViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        NSString *rowString = [self.list objectAtIndex:[indexPath row]];
 //        UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //        [alter show];
-        let myAlert = UIAlertController(title: "⚠️ 警告", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
+        let myAlert = UIAlertController(title: "⚠️ 提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)

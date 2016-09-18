@@ -23,6 +23,7 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
     var school = ["host"]
     var date = ["date"]
     var kcid = ["kcid"]
+    var place = ["place"]
     
     @IBOutlet weak var tb: UITableView!
     var refreshControl = UIRefreshControl()
@@ -87,6 +88,7 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
         Cell.host.text = school[indexPath.row + 1]
         Cell.date.text = date[indexPath.row + 1]
         Cell.courseid.text = kcid[indexPath.row + 1]
+        Cell.place.text = place[indexPath.row + 1]
         return Cell
     }
     
@@ -98,6 +100,7 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
                 school.append(item.valueForKey("kc_host") as! String)
                 date.append(item.valueForKey("kc_date") as! String)
                 kcid.append(item.valueForKey("kc_id") as! String)
+                place.append(item.valueForKey("kc_place") as! String)
             }
         }
     }
@@ -152,18 +155,18 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
                 let dataInt: Int? = Int(dataString)
                 
                 if dataInt == 1{
-                    let myAlert = UIAlertController(title: "⚠️ 警告", message: "该课程人数已满", preferredStyle: UIAlertControllerStyle.Alert)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "该课程人数已满", preferredStyle: UIAlertControllerStyle.Alert)
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     myAlert.addAction(okAction)
                     self.presentViewController(myAlert, animated: true, completion: nil)
                 }else if dataInt == 2{
-                    let myAlert = UIAlertController(title: "⚠️ 警告", message: "已选该课程", preferredStyle: UIAlertControllerStyle.Alert)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "已选该课程", preferredStyle: UIAlertControllerStyle.Alert)
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     myAlert.addAction(okAction)
                     self.presentViewController(myAlert, animated: true, completion: nil)
                     
                 }else if dataInt == 3{
-                    let myAlert = UIAlertController(title: "⚠️ 警告", message: "选课成功", preferredStyle: UIAlertControllerStyle.Alert)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "选课成功", preferredStyle: UIAlertControllerStyle.Alert)
                     let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                     myAlert.addAction(okAction)
                     self.presentViewController(myAlert, animated: true, completion: nil)

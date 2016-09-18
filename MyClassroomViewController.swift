@@ -35,13 +35,14 @@ class MyClassroomViewController: UIViewController,UITableViewDataSource,UITableV
     var school = ["host"]
     var date = ["date"]
     var kcid = ["kcid"]
+    var place = ["place"]
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         setInformation()
         
-        location.text = "欢迎：\(userName!)"
+//        location.text = "欢迎：\(userName!)"
         
         refreshControl.addTarget(self, action: "refreshData",
             forControlEvents: UIControlEvents.ValueChanged)
@@ -101,6 +102,7 @@ class MyClassroomViewController: UIViewController,UITableViewDataSource,UITableV
         Cell.host.text = school[indexPath.row + 1]
         Cell.date.text = date[indexPath.row + 1]
         Cell.courseid.text = kcid[indexPath.row + 1]
+        Cell.classroom.text = place[indexPath.row + 1]
         return Cell
     }
     
@@ -116,6 +118,7 @@ class MyClassroomViewController: UIViewController,UITableViewDataSource,UITableV
                 school.append(item.valueForKey("kc_host") as! String)
                 date.append(item.valueForKey("kc_date") as! String)
                 kcid.append(item.valueForKey("kc_id") as! String)
+                place.append(item.valueForKey("kc_place") as! String)
             }
         }    
     }

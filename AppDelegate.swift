@@ -58,26 +58,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userName: String? = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
         
         if userName != nil{
+            
+            // draw
+//            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+//            
+//            let main: MyClassroomViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MyClassroomViewController") as! MyClassroomViewController
+//            let left: LeftSideViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("LeftSideViewController") as! LeftSideViewController
+//            let right: RightSideViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("RightSideViewController") as! RightSideViewController
+//            
+//            
+//            let mainNav = UINavigationController(rootViewController: main)
+//            let leftSideNav = UINavigationController(rootViewController: left)
+//            let rightSideNav =  UINavigationController(rootViewController: right)
+//            //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//            
+//            drawerController = MMDrawerController(centerViewController: mainNav, leftDrawerViewController: leftSideNav, rightDrawerViewController: rightSideNav)
+//            
+//            drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+//            drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+//            
+//            //self.window?.rootViewController = mainNav
+//            
+//            self.window?.rootViewController = drawerController
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             
-            let main: MyClassroomViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("MyClassroomViewController") as! MyClassroomViewController
-            let left: LeftSideViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("LeftSideViewController") as! LeftSideViewController
-            let right: RightSideViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("RightSideViewController") as! RightSideViewController
-            
-            
+            let main: ViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
             let mainNav = UINavigationController(rootViewController: main)
-            let leftSideNav = UINavigationController(rootViewController: left)
-            let rightSideNav =  UINavigationController(rootViewController: right)
-            //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            drawerController = MMDrawerController(centerViewController: mainNav, leftDrawerViewController: leftSideNav, rightDrawerViewController: rightSideNav)
-            
-            drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
-            drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
-            
-            //self.window?.rootViewController = mainNav
-            
-            self.window?.rootViewController = drawerController
+            self.window?.rootViewController = mainNav
         }else{
             print("Please login")  
         }

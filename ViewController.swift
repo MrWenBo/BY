@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
@@ -34,11 +35,33 @@ class ViewController: UIViewController {
     @IBAction func xxzlButton(sender: AnyObject) {
     }
     
+    @IBAction func loginOutButton(sender: AnyObject) {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("password")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcHistory_data")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcNow_data")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcOpen_data")
+        
+        let myAlert = UIAlertController(title: "提示", message: "是否推出", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) -> Void in
+            
+            
+            let loginView = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! loginViewController
+            self.presentViewController(loginView, animated: true, completion: nil)
+
+        }
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+
+        
+    }
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if userName != nil{
             self.getHistoryInfo()
             self.getNowInfo()
@@ -57,6 +80,7 @@ class ViewController: UIViewController {
 //        self.addChildViewController(viewController)
 //        viewController.didMoveToParentViewController(self)
 //        viewController
+         
 
     }
 
@@ -74,6 +98,20 @@ class ViewController: UIViewController {
         let snowOverlay = VENSnowOverlayView.init(frame: self.view.frame)
         self.view.addSubview(snowOverlay)
         snowOverlay.beginSnowAnimation()
+        
+        
+//        self.kcxwLabel.tada(nil)
+//        self.kcygLabel.bounce(nil)
+//        self.xxzlLabel.pulse(nil)
+//        self.msktLabel.shake(nil)
+//        self.yxlwLabel.swing(nil)
+        
+        
+        self.kcxwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
+        self.kcygLabel.snapIntoView(self.view, direction: DCAnimationDirection.Left)
+        self.xxzlLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
+        self.msktLabel.snapIntoView(self.view, direction: DCAnimationDirection.Right)
+        self.yxlwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
         
     }
 

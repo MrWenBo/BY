@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UTM-9D-tMb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ZoC-UM-FOn">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -96,7 +96,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vz-qZ-Rdn">
                                                     <rect key="frame" x="17" y="74" width="211" height="21"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -270,7 +270,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kc_date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drV-Kw-p7D">
-                                                    <rect key="frame" x="27" y="6" width="209" height="21"/>
+                                                    <rect key="frame" x="13" y="6" width="209" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,13 +278,6 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kc_place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyf-qx-LGa">
                                                     <rect key="frame" x="241" y="6" width="116" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kc_teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogv-3I-WXA">
-                                                    <rect key="frame" x="27" y="89" width="96" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -298,9 +291,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZv-K7-nI7">
-                                                    <rect key="frame" x="26" y="49" width="210" height="21"/>
+                                                    <rect key="frame" x="13" y="49" width="210" height="21"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -308,6 +301,13 @@
                                                     <rect key="frame" x="300" y="49" width="57" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kc_teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogv-3I-WXA">
+                                                    <rect key="frame" x="13" y="89" width="96" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -363,62 +363,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="lCL-ab-0ZD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="lCL-ab-0ZD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <animations/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-OI-tog">
-                                <rect key="frame" x="91" y="198" width="192" height="30"/>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dUG-Vn-exU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umd-C3-MRz">
+                                        <rect key="frame" x="115" y="318" width="145" height="30"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.31112199889999997" green="0.62252791610000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="登录">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="loginButton:" destination="UTM-9D-tMb" eventType="touchUpInside" id="ClX-dc-d0u"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-OI-tog">
+                                        <rect key="frame" x="91" y="233" width="192" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名：" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="di6-4p-csx">
+                                        <rect key="frame" x="91" y="184" width="192" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名：" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="di6-4p-csx">
-                                <rect key="frame" x="91" y="147" width="192" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umd-C3-MRz">
-                                <rect key="frame" x="115" y="267" width="145" height="30"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.31112199889999997" green="0.62252791610000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="登录">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButton:" destination="UTM-9D-tMb" eventType="touchUpInside" id="ClX-dc-d0u"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="di6-4p-csx" secondAttribute="trailing" constant="70" id="Jui-RD-Ira"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lCL-ab-0ZD" secondAttribute="trailing" constant="-20" id="XGD-fI-9dV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="umd-C3-MRz" secondAttribute="trailing" constant="95" id="Yby-Ku-rUB"/>
-                            <constraint firstItem="umd-C3-MRz" firstAttribute="top" secondItem="pfa-OI-tog" secondAttribute="bottom" constant="30" id="ZOu-Sh-kg3"/>
-                            <constraint firstItem="di6-4p-csx" firstAttribute="leading" secondItem="d8k-Sd-4bp" secondAttribute="leadingMargin" constant="70" id="b1j-ik-ydN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pfa-OI-tog" secondAttribute="trailing" constant="70" id="dJ9-4T-W8i"/>
-                            <constraint firstItem="pfa-OI-tog" firstAttribute="leading" secondItem="d8k-Sd-4bp" secondAttribute="leadingMargin" constant="70" id="dSe-uR-hDL"/>
-                            <constraint firstItem="lCL-ab-0ZD" firstAttribute="top" secondItem="d8k-Sd-4bp" secondAttribute="topMargin" id="esY-4m-Ypg"/>
-                            <constraint firstItem="pfa-OI-tog" firstAttribute="top" secondItem="di6-4p-csx" secondAttribute="bottom" constant="20" id="hJG-69-qMj"/>
-                            <constraint firstItem="63i-T9-Bu0" firstAttribute="top" secondItem="lCL-ab-0ZD" secondAttribute="bottom" id="hRs-FB-1SK"/>
-                            <constraint firstItem="lCL-ab-0ZD" firstAttribute="leading" secondItem="d8k-Sd-4bp" secondAttribute="leadingMargin" constant="-20" id="oka-tZ-NeK"/>
-                            <constraint firstItem="umd-C3-MRz" firstAttribute="leading" secondItem="d8k-Sd-4bp" secondAttribute="leadingMargin" constant="95" id="p5Y-hk-YxY"/>
-                            <constraint firstItem="di6-4p-csx" firstAttribute="top" secondItem="Qan-sr-NQe" secondAttribute="bottom" constant="100" id="w1b-fQ-8SR"/>
+                            <constraint firstItem="dUG-Vn-exU" firstAttribute="top" secondItem="Qan-sr-NQe" secondAttribute="bottom" id="3JV-H3-ccc"/>
+                            <constraint firstItem="dUG-Vn-exU" firstAttribute="leading" secondItem="d8k-Sd-4bp" secondAttribute="leadingMargin" constant="-20" id="61k-cu-IwW"/>
+                            <constraint firstItem="63i-T9-Bu0" firstAttribute="top" secondItem="dUG-Vn-exU" secondAttribute="bottom" id="bek-pm-4YL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dUG-Vn-exU" secondAttribute="trailing" constant="-20" id="d9d-SP-wcM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="登录" id="b37-dw-ANy"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="loginButton" destination="umd-C3-MRz" id="hWd-hs-wem"/>
                         <outlet property="passwordTextField" destination="pfa-OI-tog" id="3nB-zT-GRu"/>
                         <outlet property="userNameTextField" destination="di6-4p-csx" id="TYF-30-dQO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7d-Uu-yuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="827.5" y="-824.5"/>
+            <point key="canvasLocation" x="1359.5" y="-824.5"/>
         </scene>
         <!--博雅学堂-->
         <scene sceneID="tne-QT-ifu">
@@ -495,6 +493,11 @@
                         <barButtonItem key="leftBarButtonItem" title="我的课堂" id="4M9-vP-eEF">
                             <connections>
                                 <segue destination="1r2-EO-9s6" kind="push" id="OxG-mm-FLX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="退出" id="sYa-PI-eyD">
+                            <connections>
+                                <action selector="loginOutButton:" destination="BYZ-38-t0r" id="FCC-A8-PAA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -733,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaF-dj-SaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1832.5" y="-660.5"/>
+            <point key="canvasLocation" x="2364.5" y="-660.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Amp-lf-b8h">
@@ -754,7 +757,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAK-5D-ZEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="931.5" y="-114.5"/>
+            <point key="canvasLocation" x="1463.5" y="-114.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SKO-65-RfL">
@@ -773,7 +776,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6C-g4-ysH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1426.5" y="-652.5"/>
+            <point key="canvasLocation" x="1958.5" y="-652.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="spz-OT-T5e">
@@ -898,17 +901,17 @@
                                                     <rect key="frame" x="269" y="15" width="80" height="80"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFL-s8-EdS">
-                                                    <rect key="frame" x="15" y="44" width="191" height="21"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="kc_host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhc-KE-UkE">
                                                     <rect key="frame" x="134" y="82" width="118" height="18"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFL-s8-EdS">
+                                                    <rect key="frame" x="15" y="44" width="191" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1061,6 +1064,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBj-eg-8b5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="2666"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fj2-zD-9nG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZoC-UM-FOn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TJv-t1-KhQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UTM-9D-tMb" kind="relationship" relationship="rootViewController" id="hHP-bM-h5w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tLG-Dk-flE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="827" y="-825"/>
         </scene>
     </scenes>
     <resources>

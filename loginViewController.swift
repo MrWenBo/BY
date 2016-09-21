@@ -12,6 +12,7 @@ class loginViewController: UIViewController {
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     let userNamelogin = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
     let passwordlogin = NSUserDefaults.standardUserDefaults().stringForKey("password")
@@ -28,13 +29,20 @@ class loginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+//        self.userNameTextField.hinge(nil)
+//        self.passwordTextField.drop(nil)
+//        self.loginButton.hinge(nil)
+    }
+    
+    
     @IBAction func loginButton(sender: AnyObject) {
         
         let userName = userNameTextField.text
         let password = passwordTextField.text
         
         if (userName!.isEmpty || password!.isEmpty){
-            let myAlert = UIAlertController(title: "⚠️ 警告", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
+            let myAlert = UIAlertController(title: "提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             myAlert.addAction(okAction)
             self.presentViewController(myAlert, animated: true, completion: nil)
@@ -75,7 +83,7 @@ class loginViewController: UIViewController {
 
                 
             }else{
-                let myAlert = UIAlertController(title: "⚠️ 警告", message: "密码或用户名错误", preferredStyle: UIAlertControllerStyle.Alert)
+                let myAlert = UIAlertController(title: "提示", message: "密码或用户名错误", preferredStyle: UIAlertControllerStyle.Alert)
                 let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 myAlert.addAction(okAction)
                 self.presentViewController(myAlert, animated: true, completion: nil)

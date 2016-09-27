@@ -36,21 +36,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginOutButton(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("password")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcHistory_data")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcNow_data")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("kcOpen_data")
         
-        let myAlert = UIAlertController(title: "提示", message: "是否推出", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let myAlert = UIAlertController(title: "提示", message: "是否退出登陆", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) -> Void in
+            
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("password")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcHistory_data")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcNow_data")
+            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcOpen_data")
             
             
             let loginView = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! loginViewController
             self.presentViewController(loginView, animated: true, completion: nil)
+            
 
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+      
+        myAlert.addAction(cancelAction)
         myAlert.addAction(okAction)
+        
         self.presentViewController(myAlert, animated: true, completion: nil)
 
         
@@ -107,11 +114,11 @@ class ViewController: UIViewController {
 //        self.yxlwLabel.swing(nil)
         
         
-        self.kcxwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
-        self.kcygLabel.snapIntoView(self.view, direction: DCAnimationDirection.Left)
-        self.xxzlLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
-        self.msktLabel.snapIntoView(self.view, direction: DCAnimationDirection.Right)
-        self.yxlwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
+        self.kcxwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
+        self.kcygLabel.snapIntoView(self.view, direction: DCAnimationDirection.Right)
+        self.xxzlLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
+        self.msktLabel.snapIntoView(self.view, direction: DCAnimationDirection.Left)
+        self.yxlwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
         
     }
 

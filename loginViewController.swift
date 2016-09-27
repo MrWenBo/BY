@@ -18,6 +18,7 @@ class loginViewController: UIViewController {
     let passwordlogin = NSUserDefaults.standardUserDefaults().stringForKey("password")
     
     
+    @IBOutlet weak var login: UILabel!
     override func viewDidLoad() {
        
         super.viewDidLoad()
@@ -33,6 +34,8 @@ class loginViewController: UIViewController {
 //        self.userNameTextField.hinge(nil)
 //        self.passwordTextField.drop(nil)
 //        self.loginButton.hinge(nil)
+        
+//        self.login.
     }
     
     

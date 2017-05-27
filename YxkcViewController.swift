@@ -10,9 +10,9 @@ import UIKit
 
 class YxkcViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
-    let kcNow_data = NSUserDefaults.standardUserDefaults().valueForKey("kcOpen_data")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
+    let kcNow_data = UserDefaults.standard.value(forKey: "kcOpen_data")
     
     var cellName = ["课程列表初始化"]
     var teacher = ["teacher"]
@@ -33,13 +33,13 @@ class YxkcViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return cellName.count - 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! YxkcTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! YxkcTableViewCell
         
         //        Cell.selectionStyle = UITableViewCellSelectionStyle.Blue
         //
@@ -57,29 +57,29 @@ class YxkcViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return Cell
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            cellName.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+            cellName.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        NSString *rowString = [self.list objectAtIndex:[indexPath row]];
 //        UIAlertView * alter = [[UIAlertView alloc] initWithTitle:@"选中的行信息" message:rowString delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 //        [alter show];
-        let myAlert = UIAlertController(title: "⚠️ 提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let myAlert = UIAlertController(title: "⚠️ 提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         myAlert.addAction(okAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
+        self.present(myAlert, animated: true, completion: nil)
         
     }
     
@@ -89,11 +89,11 @@ class YxkcViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func setInformation(){
         if kcNow_data != nil {
             for item in kcNow_data as! Array<AnyObject> {
-                cellName.append(item.valueForKey("kc_name") as! String)
-                teacher.append(item.valueForKey("kc_teacher") as! String)
-                school.append(item.valueForKey("kc_host") as! String)
-                date.append(item.valueForKey("kc_date") as! String)
-                kcid.append(item.valueForKey("kc_id") as! String)
+                cellName.append(item.value(forKey: "kc_name") as! String)
+                teacher.append(item.value(forKey: "kc_teacher") as! String)
+                school.append(item.value(forKey: "kc_host") as! String)
+                date.append(item.value(forKey: "kc_date") as! String)
+                kcid.append(item.value(forKey: "kc_id") as! String)
             }
         }
     }

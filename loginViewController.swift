@@ -14,11 +14,13 @@ class loginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    let userNamelogin = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let passwordlogin = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let userNamelogin = UserDefaults.standard.string(forKey: "user_name")
+    let passwordlogin = UserDefaults.standard.string(forKey: "password")
     
     
     @IBOutlet weak var login: UILabel!
+    
+    
     override func viewDidLoad() {
        
         super.viewDidLoad()
@@ -30,80 +32,67 @@ class loginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-//        self.userNameTextField.hinge(nil)
-//        self.passwordTextField.drop(nil)
-//        self.loginButton.hinge(nil)
-        
-//        self.login.
+    override func viewDidAppear(_ animated: Bool) {
+
     }
     
-    
-    @IBAction func loginButton(sender: AnyObject) {
+    @IBAction func DoneCloseKeyBoard(_ sender: Any) {
+        view.resignFirstResponder();
+    }
+
+    @IBAction func loginButton(_ sender: AnyObject) {
         
         let userName = userNameTextField.text
         let password = passwordTextField.text
         
         if (userName!.isEmpty || password!.isEmpty){
-            let myAlert = UIAlertController(title: "提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let myAlert = UIAlertController(title: "提示", message: "用户名或密码未填写", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             myAlert.addAction(okAction)
-            self.presentViewController(myAlert, animated: true, completion: nil)
+            self.present(myAlert, animated: true, completion: nil)
             
             return
         }
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/LoginAndRegister/Login")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = URL(string: "http://10.254.20.163/Boya/index.php/Boya/LoginAndRegister/Login")
+        let loginRequest = NSMutableURLRequest(url: url!)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(userNameTextField.text! as String)&password=\(passwordTextField.text! as String)"
 //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
       
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest){ (data, response , e) -> Void in
         do{
-            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-            let status = jsonData.valueForKey("status") as! String
-            let result = jsonData.valueForKey("result") as! String
+            let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+            let status = jsonData.value(forKey: "status") as! String
+            let result = jsonData.value(forKey: "result") as! String
             print(status)
             print(result)
                 
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//            self.status.text = jsonData.valueForKey("status") as! String
-                
+            DispatchQueue.main.async(execute: { () -> Void in
+        
             if status == "true" && result == "true"{
-//                let loginView = self.storyboard?.instantiateViewControllerWithIdentifier("MyClassroomViewController") as! MyClassroomViewController
-//                self.presentViewController(loginView, animated: true, completion: nil)
                 
-                NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "user_name")
-                NSUserDefaults.standardUserDefaults().setObject(password, forKey: "password")
-                NSUserDefaults.standardUserDefaults().synchronize()//同步
+                UserDefaults.standard.set(userName, forKey: "user_name")
+                UserDefaults.standard.set(password, forKey: "password")
+                UserDefaults.standard.synchronize()//同步
                 
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.buildUserInterface()
 
                 
             }else{
-                let myAlert = UIAlertController(title: "提示", message: "密码或用户名错误", preferredStyle: UIAlertControllerStyle.Alert)
-                let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let myAlert = UIAlertController(title: "提示", message: "密码或用户名错误", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 myAlert.addAction(okAction)
-                self.presentViewController(myAlert, animated: true, completion: nil)
+                self.present(myAlert, animated: true, completion: nil)
                 print("fail")
             }
-                    
-                    
             })
-            
         }catch{}
-            
-        }
+        } 
         loginTask.resume()
-        
-        
-        
     }
-
-
 }

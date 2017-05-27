@@ -10,13 +10,13 @@ import UIKit
 
 class MyClassroomTableViewController: UITableViewController {
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
     
     
     @IBOutlet weak var location: UILabel!
     
-    let kcNow_data = NSUserDefaults.standardUserDefaults().valueForKey("kcNow_data")
+    let kcNow_data = UserDefaults.standard.value(forKey: "kcNow_data")
     //let kcNow_data = NSUserDefaults.standardUserDefaults().valueForKey("kcHistory_data")//测试
     
     
@@ -29,7 +29,7 @@ class MyClassroomTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setInformation()
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         // Do any additional setup after loading the view.
     }
     
@@ -39,34 +39,34 @@ class MyClassroomTableViewController: UITableViewController {
     }
     
     
-    @IBAction func backToBoya(sender: AnyObject) {
-        let boyaView = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+    @IBAction func backToBoya(_ sender: AnyObject) {
+        let boyaView = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         let boyaViewNiv = UINavigationController(rootViewController: boyaView)
-        self.presentViewController(boyaViewNiv, animated: true, completion: nil)
+        self.present(boyaViewNiv, animated: true, completion: nil)
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
         
         return cellName.count - 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         self.tableView.setEditing(true, animated: true)
-        let Cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MyclassroomTabelViewCell
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MyclassroomTabelViewCell
     
         
-        Cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        Cell.selectionStyle = UITableViewCellSelectionStyle.blue
         
         Cell.textLabel?.text = cellName[indexPath.row + 1]
                 
-        Cell.textLabel?.font = Cell.textLabel?.font.fontWithSize(20)
+        Cell.textLabel?.font = Cell.textLabel?.font.withSize(20)
 //        Cell.date.opaque = false
         Cell.teacher.text = teacher[indexPath.row + 1]
         Cell.host.text = school[indexPath.row + 1]
@@ -97,11 +97,11 @@ class MyClassroomTableViewController: UITableViewController {
     func setInformation(){
         if kcNow_data != nil {
             for item in kcNow_data as! Array<AnyObject> {
-                cellName.append(item.valueForKey("kc_name") as! String)
-                teacher.append(item.valueForKey("kc_teacher") as! String)
-                school.append(item.valueForKey("kc_host") as! String)
-                date.append(item.valueForKey("kc_date") as! String)
-                kcid.append(item.valueForKey("kc_id") as! String)
+                cellName.append(item.value(forKey: "kc_name") as! String)
+                teacher.append(item.value(forKey: "kc_teacher") as! String)
+                school.append(item.value(forKey: "kc_host") as! String)
+                date.append(item.value(forKey: "kc_date") as! String)
+                kcid.append(item.value(forKey: "kc_id") as! String)
             }
         }
     }

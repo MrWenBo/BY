@@ -10,9 +10,9 @@ import UIKit
 
 class YxkcTableViewController: UITableViewController {
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
-    let kcNow_data = NSUserDefaults.standardUserDefaults().valueForKey("kcOpen_data")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
+    let kcNow_data = UserDefaults.standard.value(forKey: "kcOpen_data")
     
     var cellName = ["课程列表初始化"]
     var teacher = ["teacher"]
@@ -33,13 +33,13 @@ class YxkcTableViewController: UITableViewController {
     
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return cellName.count - 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! YxkcTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! YxkcTableViewCell
         
 //        Cell.selectionStyle = UITableViewCellSelectionStyle.Blue
 //        
@@ -64,11 +64,11 @@ class YxkcTableViewController: UITableViewController {
     func setInformation(){
         if kcNow_data != nil {
             for item in kcNow_data as! Array<AnyObject> {
-                cellName.append(item.valueForKey("kc_name") as! String)
-                teacher.append(item.valueForKey("kc_teacher") as! String)
-                school.append(item.valueForKey("kc_host") as! String)
-                date.append(item.valueForKey("kc_date") as! String)
-                kcid.append(item.valueForKey("kc_id") as! String)
+                cellName.append(item.value(forKey: "kc_name") as! String)
+                teacher.append(item.value(forKey: "kc_teacher") as! String)
+                school.append(item.value(forKey: "kc_host") as! String)
+                date.append(item.value(forKey: "kc_date") as! String)
+                kcid.append(item.value(forKey: "kc_id") as! String)
             }
         }
     }

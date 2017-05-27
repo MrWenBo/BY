@@ -12,19 +12,19 @@ class kcyg: UIViewController {
 
     @IBOutlet weak var kcygwv: UIWebView!
     
-        func loadUrl(url:String)
+        func loadUrl(_ url:String)
         {
-            let urlobj = NSURL(string:url)
+            let urlobj = URL(string:url)
     
-            let request = NSURLRequest(URL:urlobj!)
+            let request = URLRequest(url:urlobj!)
     
             kcygwv.loadRequest(request);
         }
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.loadUrl("http://bykt.buaa.edu.cn:81/courseForecast.aspx")
+        DispatchQueue.main.async { () -> Void in
+            self.loadUrl("http://www.buaa.edu.cn")
 //            self.loadUrl("http://www.cguardian.com/tabid/77/Default.aspx?oid=625946")
         }
         
@@ -38,9 +38,4 @@ class kcyg: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func backButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }

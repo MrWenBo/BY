@@ -12,11 +12,11 @@ class kcxw: UIViewController {
 
     @IBOutlet weak var kcxwWebView: UIWebView!
     
-    func loadUrl(url:String)
+    func loadUrl(_ url:String)
     {
-        let urlobj = NSURL(string:url)
+        let urlobj = URL(string:url)
         
-        let request = NSURLRequest(URL:urlobj!)
+        let request = URLRequest(url:urlobj!)
         
         kcxwWebView.loadRequest(request);
     }
@@ -24,8 +24,8 @@ class kcxw: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.loadUrl("http://bykt.buaa.edu.cn:81/NewsList.aspx")
+        DispatchQueue.main.async { () -> Void in
+            self.loadUrl("http://www.buaa.edu.cn")
         }
         // Do any additional setup after loading the view.
     }
@@ -35,9 +35,4 @@ class kcxw: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func backButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }

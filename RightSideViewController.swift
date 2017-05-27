@@ -10,11 +10,11 @@ import UIKit
 
 class RightSideViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
     
-//    let kcOpen_data = NSUserDefaults.standardUserDefaults().valueForKey("kcHistory_data")
-    let kcOpen_data = NSUserDefaults.standardUserDefaults().valueForKey("kcOpen_data")
+//    let kcOpen_data = UserDefaults.standard.value(forKey: "kcHistory_data")
+     let kcOpen_data = UserDefaults.standard.value(forKey: "kcOpen_data")
     
     
     
@@ -35,8 +35,8 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
         setInformation()
         
         
-        refreshControl.addTarget(self, action: "refreshData",
-            forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(RightSideViewController.refreshData),
+            for: UIControlEvents.valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新数据")
         tb.addSubview(refreshControl)
         refreshData()
@@ -46,14 +46,6 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
     
     
     func refreshData() {
-        //        //移除老数据
-        //        self.dataArray.removeAll()
-        //        //随机添加5条新数据（时间是当前时间）
-        //        for _ in 0..<5 {
-        //            let atricle = HanggeArticle(title: "新闻标题\(Int(arc4random()%1000))",
-        //                createDate: NSDate())
-        //            self.dataArray.append(atricle)
-        //        }
         reflash.getHistoryInfo()
         reflash.getNowInfo()
         reflash.getOpenInfo()
@@ -66,19 +58,21 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func backToBoya(sender: AnyObject) {
-        let boyaView = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+    
+    
+    @IBAction func backToBoya(_ sender: AnyObject) {
+        let boyaView = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         let boyaViewNiv = UINavigationController(rootViewController: boyaView)
-        self.presentViewController(boyaViewNiv, animated: true, completion: nil)
+        self.present(boyaViewNiv, animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return cellName.count - 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! RightTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RightTableViewCell
         
         
         Cell.name.text = cellName[indexPath.row + 1]
@@ -95,87 +89,87 @@ class RightSideViewController: UIViewController,UITableViewDataSource,UITableVie
     func setInformation(){
         if kcOpen_data != nil {
             for item in kcOpen_data as! Array<AnyObject> {
-                cellName.append(item.valueForKey("kc_name") as! String)
-                teacher.append(item.valueForKey("kc_teacher") as! String)
-                school.append(item.valueForKey("kc_host") as! String)
-                date.append(item.valueForKey("kc_date") as! String)
-                kcid.append(item.valueForKey("kc_id") as! String)
-                place.append(item.valueForKey("kc_place") as! String)
+                cellName.append(item.value(forKey: "kc_name") as! String)
+                teacher.append(item.value(forKey: "kc_teacher") as! String)
+                school.append(item.value(forKey: "kc_host") as! String)
+                date.append(item.value(forKey: "kc_date") as! String)
+                kcid.append(item.value(forKey: "kc_id") as! String)
+                place.append(item.value(forKey: "kc_place") as! String)
             }
         }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            cellName.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+            cellName.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let message = cellName[indexPath.row + 1]
         
-        let myAlert = UIAlertController(title: "选课？", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) -> Void in
+        let myAlert = UIAlertController(title: "选课？", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) -> Void in
             print("xuanke")
             
             self.addCourse(self.kcid[indexPath.row + 1])
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         myAlert.addAction(okAction)
         myAlert.addAction(cancelAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
+        self.present(myAlert, animated: true, completion: nil)
         
     }
     
-    func addCourse(id: String){
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/addCourse")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+    func addCourse(_ id: String){
+        let loginSession = URLSession.shared
+        let url = URL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/addCourse")
+        let loginRequest = NSMutableURLRequest(url: url!)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&courseid=\(id)"
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let data = jsonData.valueForKey("data")
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                let data = jsonData.value(forKey: "data")
                 print(data!)
                 let dataString = data as! String
                 let dataInt: Int? = Int(dataString)
                 
                 if dataInt == 1{
-                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "该课程人数已满", preferredStyle: UIAlertControllerStyle.Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "该课程人数已满", preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     myAlert.addAction(okAction)
-                    self.presentViewController(myAlert, animated: true, completion: nil)
+                    self.present(myAlert, animated: true, completion: nil)
                 }else if dataInt == 2{
-                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "已选该课程", preferredStyle: UIAlertControllerStyle.Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "已选该课程", preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     myAlert.addAction(okAction)
-                    self.presentViewController(myAlert, animated: true, completion: nil)
+                    self.present(myAlert, animated: true, completion: nil)
                     
                 }else if dataInt == 3{
-                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "选课成功", preferredStyle: UIAlertControllerStyle.Alert)
-                    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let myAlert = UIAlertController(title: "⚠️ 提示", message: "选课成功", preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     myAlert.addAction(okAction)
-                    self.presentViewController(myAlert, animated: true, completion: nil)
+                    self.present(myAlert, animated: true, completion: nil)
                     
                 }
 
                 
             }catch{}
-        }
+        } 
         
         loginTask.resume()
     }

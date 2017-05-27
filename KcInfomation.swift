@@ -10,8 +10,8 @@ import UIKit
 
 class KcInformation{
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
     
     var kc_name: String
     var kc_id: String
@@ -46,30 +46,32 @@ class KcInformation{
     
     func getHistoryInfo(){
         
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getStuHistoryCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getStuHistoryCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let isnull = jsonData.valueForKey("data")
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                
+                let isnull = jsonData.value(forKey: "data")
                 
                 if isnull! is NSNull{
-                    print("没有数据")
+                    print("历史选课没有数据")
                     
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
+                    let data = jsonData.value(forKey: "data") as! NSArray
                     //                print(data)
                     //NSUserDefaults.standardUserDefaults().setValue(data, forKey: "kc_data")
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcHistory_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard.set(data, forKey: "kcHistory_data")
+                    UserDefaults.standard.synchronize()
                     //                    print("data is synchronize")
                 }
                 
@@ -82,63 +84,62 @@ class KcInformation{
     
     func getNowInfo(){
         
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getStuNowCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getStuNowCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 //                    let status = jsonData.valueForKey("status") as! String
                 //                    let result = jsonData.valueForKey("result") as! String
                 
-                let isnull = jsonData.valueForKey("data")
+                let isnull = jsonData.value(forKey: "data")
                 
-                if isnull! is NSNull{
-                    print("没有数据")
+                if isnull! is NSNull {
+                    print("已选课程没有数据")
                     
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcNow_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "kcNow_data")
+                    UserDefaults.standard.synchronize()
                 }
                 
             }catch{}
         }
-        
         loginTask.resume()
     }
     
     func getOpenInfo(){
         
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getOpenCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getOpenCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let isnull = jsonData.valueForKey("data")
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                let isnull = jsonData.value(forKey: "data")
                 
-                if isnull! is NSNull{
+                if isnull! is NSNull {
                     print("可选课程没有数据")
                     
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcOpen_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "kcOpen_data")
+                    UserDefaults.standard.synchronize()
                 }
                 
             }catch{}
@@ -146,5 +147,4 @@ class KcInformation{
         
         loginTask.resume()
     }
-    
 }

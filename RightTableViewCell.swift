@@ -18,8 +18,8 @@ class RightTableViewCell: UITableViewCell {
     @IBOutlet weak var courseid: UILabel!
     @IBOutlet weak var name: UILabel!
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let kcOpen_data = NSUserDefaults.standardUserDefaults().valueForKey("kcOpen_data")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let kcOpen_data = UserDefaults.standard.value(forKey: "kcOpen_data")
     
 
     override func awakeFromNib() {
@@ -27,33 +27,33 @@ class RightTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
-    @IBAction func addCourse(sender: AnyObject) {
+    @IBAction func addCourse(_ sender: AnyObject) {
         
         
         
         
         
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/addCourse")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = URL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/addCourse")
+        let loginRequest = NSMutableURLRequest(url: url!)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&courseid=\(self.courseid.text! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 //                    let status = jsonData.valueForKey("status") as! String
                 //                    let result = jsonData.valueForKey("result") as! String
-                let data = jsonData.valueForKey("data")
+                let data = jsonData.value(forKey: "data")
                 
                 print(data!)
                 

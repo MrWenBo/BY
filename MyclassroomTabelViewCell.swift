@@ -12,7 +12,7 @@ import CoreLocation
 class MyclassroomTabelViewCell: UITableViewCell, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()//实例化一个CLLocationManager对象
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
     
     var latitude = 0.0
     var longitude = 0.0
@@ -34,15 +34,15 @@ class MyclassroomTabelViewCell: UITableViewCell, CLLocationManagerDelegate {
         // Initialization code
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .Denied:
+        case .denied:
             // 这里写被用户拒绝之后运行的代码
             print("用户拒绝")
             break;
@@ -51,11 +51,11 @@ class MyclassroomTabelViewCell: UITableViewCell, CLLocationManagerDelegate {
             break;
         }
     }
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
         let thelocations:NSArray = locations as NSArray
-        let location:CLLocation = thelocations.objectAtIndex(0) as! CLLocation
+        let location:CLLocation = thelocations.object(at: 0) as! CLLocation
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
         locationManager.stopUpdatingLocation()

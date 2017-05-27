@@ -11,8 +11,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let userName = NSUserDefaults.standardUserDefaults().stringForKey("user_name")
-    let password = NSUserDefaults.standardUserDefaults().stringForKey("password")
+    let userName = UserDefaults.standard.string(forKey: "user_name")
+    let password = UserDefaults.standard.string(forKey: "password")
     
     @IBOutlet weak var kcxwLabel: UIButton!
     
@@ -24,43 +24,43 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var xxzlLabel: UIButton!
     
-    @IBAction func kcxwButton(sender: AnyObject) {
-    }
-    @IBAction func kcygButton(sender: AnyObject) {
-    }
-    @IBAction func msktLabel(sender: AnyObject) {
-    }
-    @IBAction func yxlwButton(sender: AnyObject) {
-    }
-    @IBAction func xxzlButton(sender: AnyObject) {
-    }
+//    @IBAction func kcxwButton(sender: AnyObject) {
+//    }
+//    @IBAction func kcygButton(sender: AnyObject) {
+//    }
+//    @IBAction func msktLabel(sender: AnyObject) {
+//    }
+//    @IBAction func yxlwButton(sender: AnyObject) {
+//    }
+//    @IBAction func xxzlButton(sender: AnyObject) {
+//    }
+//    
+    
     
     @IBAction func loginOutButton(sender: AnyObject) {
-        
-        
-        let myAlert = UIAlertController(title: "提示", message: "是否退出登陆", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (UIAlertAction) -> Void in
+        let myAlert = UIAlertController(title: "提示", message: "是否退出登陆", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) -> Void in
             
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("user_name")
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("password")
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcHistory_data")
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcNow_data")
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("kcOpen_data")
+            UserDefaults.standard.removeObject(forKey: "user_name")
+            UserDefaults.standard.removeObject(forKey: "password")
+            UserDefaults.standard.removeObject(forKey: "kcHistory_data")
+            UserDefaults.standard.removeObject(forKey: "kcNow_data")
+            UserDefaults.standard.removeObject(forKey: "kcOpen_data")
+            UserDefaults.standard.removeObject(forKey: "Zxhd_data")
             
             
-            let loginView = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! loginViewController
-            self.presentViewController(loginView, animated: true, completion: nil)
+            let loginView = self.storyboard?.instantiateViewController(withIdentifier: "loginViewController") as! loginViewController
+            self.present(loginView, animated: true, completion: nil)
             
 
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
       
         myAlert.addAction(cancelAction)
         myAlert.addAction(okAction)
         
-        self.presentViewController(myAlert, animated: true, completion: nil)
+        self.present(myAlert, animated: true, completion: nil)
 
-        
     }
     
     
@@ -73,85 +73,59 @@ class ViewController: UIViewController {
             self.getHistoryInfo()
             self.getNowInfo()
             self.getOpenInfo()
+            //self.getZxhdInfo()
+            //self.getXyhdInfo()
         }
-        
-//        self.viewController = ({
-//            EFAnimationViewController *viewController = [[EFAnimationViewController alloc] init];
-//            [self.view addSubview:viewController.view];
-//            [self addChildViewController:viewController];
-//            [viewController didMoveToParentViewController:self];
-//            viewController;
-//        });
-//        let viewController = EFAnimationViewController.init()
-//        self.view.addSubview(viewController.view)
-//        self.addChildViewController(viewController)
-//        viewController.didMoveToParentViewController(self)
-//        viewController
-         
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
     }
     
-    override func viewDidAppear(animated: Bool) {//雪花效果
+    override func viewDidAppear(_ animated: Bool) {//雪花效果
         super.viewDidAppear(animated)
         let snowOverlay = VENSnowOverlayView.init(frame: self.view.frame)
         self.view.addSubview(snowOverlay)
         snowOverlay.beginSnowAnimation()
-        
-        
-//        self.kcxwLabel.tada(nil)
-//        self.kcygLabel.bounce(nil)
-//        self.xxzlLabel.pulse(nil)
-//        self.msktLabel.shake(nil)
-//        self.yxlwLabel.swing(nil)
-        
-        
-        self.kcxwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Bottom)
-        self.kcygLabel.snapIntoView(self.view, direction: DCAnimationDirection.Right)
-        self.xxzlLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
-        self.msktLabel.snapIntoView(self.view, direction: DCAnimationDirection.Left)
-        self.yxlwLabel.snapIntoView(self.view, direction: DCAnimationDirection.Top)
-        
+       
+        self.kcxwLabel.snap(into: self.view, direction: DCAnimationDirection.bottom)
+        self.kcygLabel.snap(into: self.view, direction: DCAnimationDirection.right)
+        self.xxzlLabel.snap(into: self.view, direction: DCAnimationDirection.top)
+        self.msktLabel.snap(into: self.view, direction: DCAnimationDirection.left)
+        self.yxlwLabel.snap(into: self.view, direction: DCAnimationDirection.top)
     }
-
-
     
-    
+    //加载历史课程
     func getHistoryInfo(){
         
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getStuHistoryCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getStuHistoryCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
         //        let postString = "userid=13211031&password=123"
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 
-                let isnull = jsonData.valueForKey("data")
+                let isnull = jsonData.value(forKey: "data")
                 
                 if isnull! is NSNull{
-                    print("没有数据")
-                    
+                    print("历史选课没有数据")
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
+                    let data = jsonData.value(forKey: "data") as! NSArray
                     //                print(data)
                     //NSUserDefaults.standardUserDefaults().setValue(data, forKey: "kc_data")
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcHistory_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    UserDefaults.standard.set(data, forKey: "kcHistory_data")
+                    UserDefaults.standard.synchronize()
                     //                    print("data is synchronize")
                 }
                 
@@ -162,33 +136,61 @@ class ViewController: UIViewController {
         loginTask.resume()
     }
     
+    //加载已选课程
     func getNowInfo(){
-        
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getStuNowCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getStuNowCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
         let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
         
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                 //                    let status = jsonData.valueForKey("status") as! String
                 //                    let result = jsonData.valueForKey("result") as! String
                 
-                let isnull = jsonData.valueForKey("data")
+                let isnull = jsonData.value(forKey: "data")
                 
                 if isnull! is NSNull {
-                    print("没有数据")
-                    
+                    print("已选没有数据")
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcNow_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "kcNow_data")
+                    UserDefaults.standard.synchronize()
+                }
+                
+            }catch{}
+        }  
+        loginTask.resume()
+    }
+    
+    //加载可选课程
+    func getOpenInfo(){
+        
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/StudentCourse/getOpenCourseList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
+        let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
+        //        let postString = "userid=13211031&password=123"
+        
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
+            
+            do{
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                let isnull = jsonData.value(forKey: "data")
+                if isnull! is NSNull {
+                    print("可选课程没有数据")
+                }else{
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "kcOpen_data")
+                    UserDefaults.standard.synchronize()
                 }
                 
             }catch{}
@@ -197,30 +199,60 @@ class ViewController: UIViewController {
         loginTask.resume()
     }
     
-    func getOpenInfo(){
-        
-        let loginSession = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://localhost/Boya/index.php/Boya/StudentCourse/getOpenCourseList")
-        let loginRequest = NSMutableURLRequest(URL: url!)
-        loginRequest.HTTPMethod = "POST"
-        let postString = "userid=\(self.userName! as String)&password=\(self.password! as String)"
+    //加载自选活动
+    func getZxhdInfo() {
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/CollegeActivityManage/getCollegeActivityList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
+        let postString = "userid=\(self.userName! as String)"
         //        let postString = "userid=13211031&password=123"
         
-        loginRequest.HTTPBody = NSString(string: postString).dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let loginTask = loginSession.dataTaskWithRequest(loginRequest) { (data, response , e) -> Void in
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
             
             do{
-                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let isnull = jsonData.valueForKey("data")
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                
+                let isnull = jsonData.value(forKey: "data")
                 
                 if isnull! is NSNull {
-                    print("可选课程没有数据")
-                    
+                    print("自选活动没有数据")
                 }else{
-                    let data = jsonData.valueForKey("data") as! NSArray
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: "kcOpen_data")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "Zxhd_data")
+                    UserDefaults.standard.synchronize()
+                }
+                
+            }catch{}
+        }
+        
+        loginTask.resume()
+    }
+    
+    
+    func getXyhdInfo() {
+        let loginSession = URLSession.shared
+        let url = NSURL(string: "http://10.254.20.163/Boya/index.php/Boya/CollegeActivityManage/getCollegeActivityList")
+        let loginRequest = NSMutableURLRequest(url: url! as URL)
+        loginRequest.httpMethod = "POST"
+        let postString = "userid=\(self.userName! as String)"
+        //        let postString = "userid=13211031&password=123"
+        
+        loginRequest.httpBody = postString.data(using: String.Encoding.utf8)
+        let loginTask = loginSession.dataTask(with: loginRequest as URLRequest) { (data, response , e) -> Void in
+            
+            do{
+                let jsonData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
+                
+                let isnull = jsonData.value(forKey: "data")
+                
+                if isnull! is NSNull {
+                    print("自选活动没有数据")
+                }else{
+                    let data = jsonData.value(forKey: "data") as! NSArray
+                    UserDefaults.standard.set(data, forKey: "Xyhd_data")
+                    UserDefaults.standard.synchronize()
                 }
                 
             }catch{}
